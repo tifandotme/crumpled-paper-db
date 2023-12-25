@@ -1,6 +1,6 @@
+import { faker } from "@faker-js/faker"
 import fs from "node:fs"
 import path from "node:path"
-import { faker } from "@faker-js/faker"
 
 import { dbPath } from "./utils.js"
 
@@ -56,7 +56,7 @@ const posts = Array.from({ length: POST_COUNT }, (_, i) => {
     id: i + 1,
     title: title,
     content: Array.from({ length: faker.number.int({ min: 3, max: 10 }) }, () =>
-      faker.lorem.sentences({ min: 4, max: 10 }),
+      faker.lorem.sentences({ min: 4, max: 10 })
     ).join("\n"),
     isPremium: faker.datatype.boolean(),
     category: faker.helpers.arrayElement([
@@ -74,7 +74,7 @@ const posts = Array.from({ length: POST_COUNT }, (_, i) => {
       {
         min: 0,
         max: USER_COUNT,
-      },
+      }
     ),
     shareCount: faker.number.int({ min: 0, max: 1000 }),
     image: faker.image.urlPicsumPhotos({

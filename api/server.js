@@ -18,8 +18,10 @@ if (!fs.existsSync(dbPath)) {
   }
 }
 
+const db = JSON.parse(fs.readFileSync(dbPath, "utf-8"))
+
 const server = jsonServer.create()
-const router = jsonServer.router(dbPath)
+const router = jsonServer.router(db)
 const middlewares = jsonServer.defaults()
 
 server.use(middlewares)
@@ -35,8 +37,6 @@ server.use((_, res, next) => {
 })
 server.use(router)
 
-const DB_URL = new URL(process.env.NEXT_PUBLIC_DB_URL)
-
-server.listen(DB_URL.port, () => {
-  console.log(`JSON Server is running at ${DB_URL.origin}`)
+server.listen(process.env.PORT, () => {
+  console.log("JSON Server is running")
 })
